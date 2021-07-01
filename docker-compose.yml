@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+
+  docker-mongo:
+    image: mongo:latest
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo_user
+      MONGO_INITDB_ROOT_PASSWORD: my_very_secret_mongo_password
+    logging:
+      driver: none
+    networks: 
+      - my_graphql_network
+
+  docker-ts-app:
+    build: ./ts-server
+    restart: "no"
+    ports:
+      - "4000:4000"
+    logging:
+      driver: local
+    depends_on: 
+      - docker-mongo
+    networks: 
+      - my_graphql_network
+
+networks:
+  my_graphql_network:
