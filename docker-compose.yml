@@ -8,10 +8,27 @@ services:
     ports:
       - "27017:27017"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: mongo_user
-      MONGO_INITDB_ROOT_PASSWORD: my_very_secret_mongo_password
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - MONGO_INITDB_ROOT_USERNAME=mongo_user
+      - MONGO_INITDB_ROOT_PASSWORD=my_very_secret_mongo_password
     logging:
       driver: none
+    networks: 
+      - my_graphql_network
+
+  mongo-express:
+    image: mongo-express:latest
+    restart: "always"
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: docker-mongo
+      ME_CONFIG_MONGODB_AUTH_USERNAME: mongo_user
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: my_very_secret_mongo_password
+    logging:
+      driver: none
+    depends_on: 
+      - docker-mongo
     networks: 
       - my_graphql_network
 
@@ -20,6 +37,18 @@ services:
     restart: "no"
     ports:
       - "4000:4000"
+    logging:
+      driver: local
+    depends_on: 
+      - docker-mongo
+    networks: 
+      - my_graphql_network
+
+  docker-java-app:
+    build: ./java-server
+    restart: "no"
+    ports:
+      - "8888:8888"
     logging:
       driver: local
     depends_on: 

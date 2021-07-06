@@ -1,0 +1,20 @@
+type User {
+    id: ID!
+    name: String!
+    age: Int
+    profession: String
+}
+
+type Post {
+    id: ID!
+    comment: String!
+    user: User!
+    createdAt: Date
+}
+
+type Hobby {
+    id: ID!
+    title: String!
+    description: String
+    user: User!
+}

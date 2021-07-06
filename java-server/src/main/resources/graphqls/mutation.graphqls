@@ -1,0 +1,17 @@
+scalar PositiveInt
+scalar Date
+scalar DateTime
+
+type Mutation {
+    createUser(name: String!, age: PositiveInt, profession: String): User!
+    createPost(comment: String!, userId: String!): Post!
+    createHobby(title: String!, description: String, userId: String!): Hobby!
+
+    updateUser(id: ID!, name: String, age: PositiveInt, profession: String): User!
+    updatePost(id: ID!, comment: String, userId: String): Post!
+    updateHobby(id: ID!, title: String, description: String, userId: String): Hobby!
+
+    removeUser(id: ID!): User
+    removePost(id: ID!): Post
+    removeHobby(id: ID!): Hobby
+}

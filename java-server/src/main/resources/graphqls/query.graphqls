@@ -1,0 +1,10 @@
+type Query {
+    user(id: ID!): User
+    users: [User]!
+
+    post(id: ID!): Post
+    posts: [Post]!
+
+    hobby(id: ID!): Hobby
+    hobbies: [Hobby]!
+}

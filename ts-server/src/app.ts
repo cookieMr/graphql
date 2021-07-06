@@ -9,7 +9,8 @@ const port = 4000;
 
 const mongoUser = "mongo_user";
 const mongoPassword = "my_very_secret_mongo_password";
-const mongodbConStr = "mongodb://" + mongoUser + ":" + mongoPassword + "@docker-mongo:27017/graph_ql_db?authSource=admin";
+const mongoDb = "graph_ql_db";
+const mongodbConStr = "mongodb://" + mongoUser + ":" + mongoPassword + "@docker-mongo:27017/" + mongoDb + "?authSource=admin";
 
 const app = express();
 
