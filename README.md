@@ -11,22 +11,26 @@ Docker files are an additional parts that make this repo run smoothly.
 
 To run all docker containers execute `docker-compose up --build` comman in the root direcotry. This will run four containers:
 1. MongoDB that will be accessible on default port `27017`.
-2. Mongo-Express, a web GUI to interact with MongoDB.
-3. Node App with two GraphQL implementations (on two different URLs).
-4. A Java Microservice that exposes few REST endpoints.
+1. Mongo-Express, a web GUI to interact with MongoDB.
+1. Node App with two GraphQL implementations (on two different URLs).
+1. A Java Microservice that exposes:
+   * few REST endpoints,
+   * the main GraphQL endpoint,
+   * Playground endpoint
+   * and Voyager endpoint.
 
 To stop all of these containers run `docker-compose down`. And the subsequent start of these containers can be faster if run without `--build` option since all of these containers are already built. Execute just `docker-compose up`.
 
 ## Connecting to Mongo DB
 
-First, the easy way, is to open a web page at [localhost](http://localhost:8081) which is an exposed Mongo-Express page to mange Mongo database.
+First, the easy way, is to open a web page at [localhost:8081](http://localhost:8081) which is an exposed Mongo-Express page to mange Mongo database.
 
 Second way is to connect directly to a Mongo DB (e.g. with the VS Code) use the following connection string:
 ```
 mongodb://mongo_user:my_very_secret_mongo_password@127.0.0.1:27017/graph_ql_db?authSource=admin
 ```
 
-## Interacting with GraphQL via GraphiQL
+## Interacting with GraphQL
 
 The Node App has two URLs. One uses an internal variables (in TypeScript code) to store data. The second URL uses the mentioned Mongo DB to store data. These URLs are:
  * http://localhost:4000/graphql
