@@ -28,6 +28,7 @@ public class InitDataCommandLineRunner implements CommandLineRunner {
     private final @NotNull PostRepository postRepository;
     private final @NotNull UserRepository userRepository;
 
+    @SuppressWarnings("PMD.DataflowAnomalyAnalysis")
     @Override
     public void run(@Nullable String... args) throws ExecutionException, InterruptedException {
         final String userId = createUserIfTableIsEmpty();
